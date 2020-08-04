@@ -3,7 +3,6 @@ require 'pry'
 class Artist
   extend Concerns::Findable
   attr_accessor :name
-  attr_reader :genre
   @@all = []
 
   def initialize(name)
@@ -29,9 +28,9 @@ class Artist
   end
 
   def self.create(name)
-    new = Artist.new(name)
-    new.save
-    new
+    newArtist = Artist.new(name)
+    newArtist.save
+    newArtist
   end
 
   def self.all

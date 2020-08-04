@@ -34,17 +34,16 @@ class Song
   end
 
   def self.create(name)
-    new = Song.new(name)
-    new.save
-    new
+    newSong = Song.new(name)
+    newSong.save
+    newSong
   end
 
   def self.new_from_filename(filename)
 
-    artist = filename.split("-")[0].strip # 1. artist
-    song = filename.split("-")[1].strip # 2. song title
-    genre = filename.split("-")[2].strip.gsub!(".mp3", "") # 3. genre
-    #binding.pry
+    artist = filename.split(' - ')[0].strip # 1. artist
+    song = filename.split(' - ')[1].strip # 2. song title
+    genre = filename.split(' - ')[2].strip.gsub!('.mp3', '') # 3. genre
     artist = Artist.find_or_create_by_name(artist)
     genre = Genre.find_or_create_by_name(genre)
     new(song, artist, genre)
@@ -52,8 +51,8 @@ class Song
   end
 
   def self.create_from_filename(filename)
-    new = new_from_filename(filename)
-    new.save
+    newFile = new_from_filename(filename)
+    newFile.save
   end
 
   def self.destroy_all
