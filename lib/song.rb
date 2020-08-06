@@ -1,6 +1,5 @@
-#!/usr/bin/env ruby
+require 'pry'
 
-require_relative '../config/environment'
 class Song
   attr_accessor :name, :artist, :genre, :musicimporter, :musiclibrarycontroller
   extend Concerns::Findable
