@@ -3,10 +3,10 @@ class Song
     attr_accessor :name, :artist, :genre
 
     @@all = []
-    def initialize(name)
+    def initialize (name)
         @name = name
-        @artist = artist
         @@all << self 
+        @artist = []
     end
 
     def self.all
@@ -21,9 +21,11 @@ class Song
         self.class.all << self
     end
 
-    def self.create
-        song = Song.create
-        Song.all.include?(song)
+    def self.create(name)
+        song = Song.new(song)
+        song.save
+        song
+
+        
     end
-    
 end

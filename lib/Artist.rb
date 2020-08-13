@@ -1,9 +1,10 @@
+require 'pry'
 class Artist
 
-    attr_accessor :name, :songs
+    attr_accessor :name, :song, :new_artist
 
     @@all = []
-    def initialize(name, songs)
+    def initialize(name)
         @name = name
         @@all << self
         @songs = []
@@ -19,6 +20,14 @@ class Artist
 
     def save
         self.class.all << self
+
+    end
+
+    def self.create(name)
+        # binding pry
+        name = Artist.new(name) 
+        name.save
+        name
     end
 
 end
