@@ -1,3 +1,3 @@
-class Genre 
+class Genre < Song
   
 end
