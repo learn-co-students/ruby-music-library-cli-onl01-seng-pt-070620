@@ -3,6 +3,8 @@ require 'pry'
 class Genre
 
     attr_accessor :name, :songs, :artist
+    extend Concerns::Findable
+
 
     @@all = []
 
@@ -28,7 +30,7 @@ class Genre
     end
 
     def self.create(name)
-        genre = Genre.new(genre)
+        genre = Genre.new(name)
         genre
         # binding pry
     end
