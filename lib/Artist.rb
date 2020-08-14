@@ -1,17 +1,20 @@
 require 'pry'
 class Artist
 
-    attr_accessor :name, :song, :new_artist
+    attr_accessor :name, :songs
 
     @@all = []
+
+    
     def initialize(name)
         @name = name
-        @@all << self
+        save
         @songs = []
     end
 
     def self.all
         @@all
+        # binding pry
     end
 
     def self.destroy_all
@@ -25,9 +28,12 @@ class Artist
 
     def self.create(name)
         # binding pry
-        name = Artist.new(name) 
-        name.save
-        name
+        artist = Artist.new(name) 
+        artist
     end
 
+    def add_song(song)
+        @songs << song unless songs.include?(song)
+        song.artist = self unless song.artist
+    end
 end

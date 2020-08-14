@@ -1,3 +1,5 @@
+require 'pry'
+
 class Genre
 
     attr_accessor :name, :songs, :artist
@@ -6,13 +8,15 @@ class Genre
 
     def initialize(name)
         @name = name
-        @@all << self
+        save
         @songs = []
     
     end
 
     def self.all
         @@all
+    # binding pry
+
     end
 
     def self.destroy_all
@@ -25,7 +29,6 @@ class Genre
 
     def self.create(name)
         genre = Genre.new(genre)
-        genre.save
         genre
 
         # binding pry
