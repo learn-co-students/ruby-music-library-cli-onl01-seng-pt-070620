@@ -8,8 +8,8 @@ class Song
     def initialize (name, artist=nil, genre=nil)
         @name = name
         save
-        @artist = artist if artist
-        @genre = genre if genre
+        self.artist=(artist) if artist
+        self.genre=(genre) if genre
     end
 
     def self.all
@@ -19,11 +19,11 @@ class Song
     end
 
     def self.destroy_all
-        self.all.clear
+        @@all.clear
     end
 
     def save
-        self.class.all << self
+        @@all << self
     end
 
     def self.create(name)
@@ -33,8 +33,15 @@ class Song
     def artist=(artist)
         @artist = artist
         artist.add_song(self)
-       
-        
+    end
+
+    def genre=(genre)
+        @genre = genre
+        genre.add_song(self)
+    end
+
+    def self.find_by_name(name)
+        @@all.detect {|song| song.name == name}
     end
 
 end

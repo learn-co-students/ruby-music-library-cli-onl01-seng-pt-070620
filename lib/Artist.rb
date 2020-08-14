@@ -10,6 +10,7 @@ class Artist
         @name = name
         save
         @songs = []
+        
     end
 
     def self.all
@@ -18,11 +19,11 @@ class Artist
     end
 
     def self.destroy_all
-        self.all.clear
+        @@all.clear
     end
 
     def save
-        self.class.all << self
+        @@all << self
 
     end
 
@@ -36,4 +37,13 @@ class Artist
         @songs << song unless songs.include?(song)
         song.artist = self unless song.artist
     end
+
+    def genres
+        songs.collect {|song| song.genre}.uniq
+    end
+    def self.find_by_name(name)
+        @@all.detect {|artist| artist.name == name}
+
+    end
+
 end

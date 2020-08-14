@@ -20,18 +20,30 @@ class Genre
     end
 
     def self.destroy_all
-        self.all.clear
+        @@all.clear
     end
 
     def save
-        self.class.all << self
+        @@all << self
     end
 
     def self.create(name)
         genre = Genre.new(genre)
         genre
-
         # binding pry
-    
+    end
+
+    def add_song(song)
+        @songs << song unless songs.include?(song)
+        song.genre = self unless song.genre
+    end
+
+    def artists
+        songs.collect {|song| song.artist}.uniq
+    end
+
+    def self.find_by_name(name)
+        @@all.detect {|artist| artist.name == name}
+
     end
 end
