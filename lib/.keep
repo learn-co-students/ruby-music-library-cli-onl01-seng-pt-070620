@@ -1,0 +1,7 @@
+class Song
+att
+initialize (name)
+@name=name
+end
+
+end

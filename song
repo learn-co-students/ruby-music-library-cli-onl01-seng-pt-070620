@@ -1,0 +1,18 @@
+
+[1mFrom:[0m /home/zainabomar/code/labs/ruby-music-library-cli-onl01-seng-pt-070620/lib/Artist.rb @ line 29 Artist#add_song:
+
+    [1;34m26[0m: [32mdef[0m [1;34madd_song[0m (song)
+    [1;34m27[0m:  [32mif[0m song.artist == [1;36mnil[0m
+    [1;34m28[0m:      song.artist = [1;36mself[0m
+ => [1;34m29[0m:      binding.pry
+    [1;34m30[0m:  [32melse[0m
+    [1;34m31[0m:      [1;36mnil[0m
+    [1;34m32[0m:  [32mend[0m   
+    [1;34m33[0m:  [32mif[0m @songs.include?(song)
+    [1;34m34[0m:      [1;36mnil[0m
+    [1;34m35[0m:  [32melse[0m
+    [1;34m36[0m:       @songs << song
+    [1;34m37[0m:  [32mend[0m
+    [1;34m38[0m:    song
+    [1;34m39[0m: [32mend[0m
+
