@@ -1,7 +1,7 @@
 class Song 
   attr_accessor :name, :artist, :genre, :musicimporter, :musiclibrarycontroller 
   
-  extend Findable::ClassMethods 
+  extend Concerns::Findable 
   @@all = []
   
   def initialize(name, artist = nil, genre = nil)
