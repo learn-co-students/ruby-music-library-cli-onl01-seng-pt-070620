@@ -44,7 +44,7 @@ class MusicLibraryController
   
   def list_songs
     
-    name = Song.all.uniq.sort {|a, b| a.name <=> b.name }
+    name = Song.all.sort {|a, b| a.name <=> b.name }
       name.each_with_index do |song, i|
         puts "#{i + 1}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
         
@@ -54,7 +54,7 @@ class MusicLibraryController
 
   def list_artists
     
-    name = Artist.all.uniq.sort {|a, b| a.name <=> b.name }
+    name = Artist.all.sort {|a, b| a.name <=> b.name }
       name.each_with_index do |artist, i|
         puts "#{i + 1}. #{artist.name}"
         
@@ -64,12 +64,13 @@ class MusicLibraryController
   
   def list_genres
     
-    name = Genre.all.uniq.sort {|a, b| a.name <=> b.name }
+    name = Genre.all.sort {|a, b| a.name <=> b.name }
       name.each_with_index do |genre, i|
         puts "#{i + 1}. #{genre.name}"
         
     end
   end
+  
   
   
   
