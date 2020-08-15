@@ -10,7 +10,7 @@ class MusicImporter
   
   def files() 
     Dir.glob("#{@path}/*.mp3").collect do |file|
-      file.gsub("./spec/fixtures/mp3s/", "")
+      file.gsub("#{@path}/", "")
     end
   end
   
