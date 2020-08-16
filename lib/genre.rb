@@ -23,14 +23,13 @@ class Genre
     end
 
     def self.create(name)
-        new_genre = Genre.new(name)
+        new_genre = self.new(name)
         new_genre.save
         new_genre
     end
 
     def songs
-        Song.all.select {|song| song.genre == self}
-        @songs
+        @songs 
     end
 
     def artists

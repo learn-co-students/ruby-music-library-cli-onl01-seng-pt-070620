@@ -1,5 +1,3 @@
-require 'pry'
-
 class Artist
     extend Concerns::Findable
 
@@ -10,7 +8,6 @@ class Artist
     def initialize(name)
         @name = name
         @songs = []
-        save
     end
 
     def self.all
@@ -26,31 +23,37 @@ class Artist
     end
 
     def self.create(name)
-        new_artist = Artist.new(name)
+        new_artist = self.new(name)
+        new_artist.save
         new_artist
     end
 
     def songs
-        Song.all.select {|song| song.artist == self}
         @songs
     end
 
     def add_song(song)
         if song.artist == nil
-          song.artist = self
+            song.artist = self
         else
-          nil
+            nil
         end
-        if @songs.include?(song)
-          nil
+        if songs.include?(song)
+            nil
         else
-          @songs << song
+            @songs << song
         end
-        song
     end
-
+    
     def genres
-        songs.collect {|song| song.genre}.uniq
+        @genre_array = []
+        @songs.each do |song|
+            if @genre_array.include?(song.genre)
+                nil
+            else
+                @genre_array << song.genre
+            end
+        end
+        @genre_array
     end
-
 end
