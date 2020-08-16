@@ -5,6 +5,7 @@ class Genre
   attr_accessor :name
   attr_reader :songs
   extend Memorable::ClassMethods
+  extend Concerns::Findable
   # extend Findable::ClassMethods
   # include Paramable::InstanceMethods
   include Memorable::InstanceMethods
