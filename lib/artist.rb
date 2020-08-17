@@ -28,6 +28,8 @@ class Artist extend Concerns::Findable
   def self.create(name)
     artist = self.new(name)
     artist
+    # a better way but will break other codes
+    # new(name).tap{|a| a.save}
   end
 
   def add_song(song)
@@ -37,6 +39,9 @@ class Artist extend Concerns::Findable
     if @songs.include?(song) == false
       @songs << song
     end
+    # a better way to do but will break other codes
+    # song.artist = self unless song.artist == self
+    # @songs << song unless @songs.include?(song)
   end
 
   def add_genre(genre)
@@ -47,5 +52,7 @@ class Artist extend Concerns::Findable
 
   def genres
     Song.genres
+    # a better way to do but will break other codes
+    # self.songs.collect {|s| s.genre}.uniq
   end
 end
