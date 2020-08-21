@@ -3,22 +3,21 @@ require 'pry'
 class Song 
     @@all = []
     attr_accessor :name
+    attr_reader :artist, :genre
     def initialize(name, artist= nil, genre= nil)
         @name= name
         
         if artist != nil 
-            self.artist = artist 
+            self.artist = artist #if ...no need for end 
+
         end 
         if genre != nil 
             self.genre= genre 
         end 
        
-        #@artist= artist
-        save 
+        #@artist= artist 
     end 
-    def artist 
-        @artist 
-    end 
+    
     def artist=(artist)
         @artist= artist
         artist.add_song(self) 
@@ -28,19 +27,17 @@ class Song
     #     @genre= genre
     #     genre.add_song(self)
     # end 
-    def genre 
-        @genre 
-    end 
+    
     def genre=(genre)
         @genre= genre
         if genre != nil && !genre.songs.include?(self)
-            @genre.songs << self 
+            genre.songs << self 
         end 
         
         #genre.add_song(self)
     end 
     def save
-        @@all << self  
+        self.class.all << self  
     end 
     def self.all 
         @@all 
@@ -49,9 +46,9 @@ class Song
         self.all.clear 
     end 
     def self.create(name)
-        self.new(name)
+        self.new(name).tap {|song| song.save}
     end 
-    def self.find_by_name(name )
+    def self.find_by_name(name)
         self.all.detect {|song| song.name == name }
     end 
     def self.find_or_create_by_name(name)
@@ -71,7 +68,8 @@ class Song
 
     end 
     def self.create_from_filename(filename)
-        self.new_from_filename(filename)
+        
+        self.new_from_filename(filename).tap {|song| song.save}
         #binding.pry 
 
 
