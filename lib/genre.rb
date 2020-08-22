@@ -21,9 +21,8 @@ class Genre
         @@all.clear
     end
 
-    def self.create
-        self.new
-        save
+    def self.create(genre)
+        Genre.new(genre)
     end
 
 end

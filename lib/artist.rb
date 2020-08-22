@@ -1,11 +1,12 @@
 class Artist
 
-    attr_accessor :name
+    attr_accessor :name, :songs
 
     @@all = []
 
     def initialize(name)
         @name = name
+        @songs = []
         save
     end
 
@@ -21,13 +22,12 @@ class Artist
         @@all.clear
     end
 
-    def self.create
-        self.new
-        save
+    def self.create(artist)
+        self.new(artist)
     end
 
     def add_song
-        Song.new(song, self)
+        Artist.new(song, self)
     end
 
 end
