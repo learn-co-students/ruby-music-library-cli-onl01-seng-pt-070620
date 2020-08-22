@@ -1,11 +1,12 @@
 class Genre
 
-    attr_accessor :name
+    attr_accessor :name, :songs
 
     @@all = []
 
     def initialize(name)
         @name = name
+        @songs = []
         save
     end
 
@@ -21,8 +22,14 @@ class Genre
         @@all.clear
     end
 
-    def self.create(genre)
-        Genre.new(genre)
+    def self.create(genre_name)
+        genre = self.new(genre_name)
+        genre.save
+        genre
+    end
+
+    def artists
+        self.songs.collect{|song| song.artist}.uniq
     end
 
 end

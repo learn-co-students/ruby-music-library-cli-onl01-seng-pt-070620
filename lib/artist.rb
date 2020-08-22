@@ -22,12 +22,19 @@ class Artist
         @@all.clear
     end
 
-    def self.create(artist)
-        self.new(artist)
+    def self.create(artist_name)
+        artist = self.new(artist_name)
+        artist.save
+        artist
     end
 
-    def add_song
-        Artist.new(song, self)
+    def add_song(song)
+        song.artist = self unless song.artist
+        songs << song unless songs.include?(song)
+    end
+
+    def genres
+        songs.collect{|s| s.genre}.uniq
     end
 
 end
