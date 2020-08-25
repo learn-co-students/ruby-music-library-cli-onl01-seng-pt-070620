@@ -1,3 +1,5 @@
+require 'pry'
+
 class Song
 
     attr_accessor :name, :artist, :genre
@@ -45,6 +47,18 @@ class Song
 
     def self.find_or_create_by_name(song)
         find_by_name(song) || create(song)
+    end
+
+    def self.new_from_filename(filename)
+        info = filename.split(" - ")
+        artist, name, genre = info[0], info[1], info[2].gsub(".mp3", "")
+        genre = Genre.find_or_create_by_name(genre)
+        artist = Artist.find_or_create_by_name(artist)
+        self.new(name, artist, genre)
+    end
+
+    def self.create_from_filename(filename)
+        new_from_filename(filename).tap{|song| song.save}
     end
 
 end
