@@ -45,18 +45,18 @@ class MusicLibraryController
     end
 
     def list_songs
-        Song.all.sort{|a, b| a.name <=> b.name}.each.with_index(1) do |s, i|
+        Song.all.uniq.sort{|a, b| a.name <=> b.name}.each.with_index(1) do |s, i|
             puts "#{i}. #{s.artist.name} - #{s.name} - #{s.genre.name}"
         end
     end
 
     def list_artists
-        artists = Artist.all.sort{|a, b| a.name <=> b.name}
+        artists = Artist.all.uniq.sort{|a, b| a.name <=> b.name}
         artists.each.with_index(1){|a, i| puts "#{i}. #{a.name}"}
     end
 
     def list_genres
-        genres = Genre.all.sort{|a, b| a.name <=> b.name}
+        genres = Genre.all.uniq.sort{|a, b| a.name <=> b.name}
         genres.each.with_index(1){|g, i| puts "#{i}. #{g.name}"}
     end
 
@@ -65,7 +65,7 @@ class MusicLibraryController
         input = gets.strip
 
         if artist = Artist.find_by_name(input)
-            artist.songs.sort{|a, b| a.name <=> b.name}.each.with_index(1) do |s, i|
+            artist.songs.uniq.sort{|a, b| a.name <=> b.name}.each.with_index(1) do |s, i|
                 puts "#{i}. #{s.name} - #{s.genre.name}"
             end
         end
@@ -76,7 +76,7 @@ class MusicLibraryController
         input = gets.strip
 
         if genre = Genre.find_by_name(input)
-            genre.songs.sort{|a, b| a.name <=> b.name}.each.with_index(1) do |s, i|
+            genre.songs.uniq.sort{|a, b| a.name <=> b.name}.each.with_index(1) do |s, i|
                 puts "#{i}. #{s.artist.name} - #{s.name}"
             end
         end
@@ -89,7 +89,7 @@ class MusicLibraryController
         songs = Song.all
 
         if(1..songs.length).include?(input)
-            song = Song.all.sort{|a, b| a.name <=> b.name}[input -1]
+            song = Song.all.uniq.sort{|a, b| a.name <=> b.name}[input -1]
         end
 
         puts "Playing #{song.name} by #{song.artist.name}" if song
